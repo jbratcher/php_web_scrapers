@@ -11,7 +11,7 @@ class Reddit extends Scraper
     /**
      * @var string
      */
-    protected $base_url = "https://www.reddit.com";
+    protected $base_url = "https://reddit.com";
 
     /**
      * @var string
@@ -25,6 +25,7 @@ class Reddit extends Scraper
 
     /**
      * @var array
+     * key subbreddit
      */
     protected $subbreddits = [];
 
@@ -44,8 +45,6 @@ class Reddit extends Scraper
         // DB::table get returns a stdClass Oject, this converts it into an array
         $this->reddit_posts = json_decode(json_encode($this->reddit_posts_object), True);
 
-        print_r($this->reddit_posts);
-
         $this->getPosts();
 
     }
@@ -58,51 +57,66 @@ class Reddit extends Scraper
     public function getPosts()
     {
 
+        $url = strval($this->base_url . $this->frontpage_url);
+
         $posts = [];
 
-        $this->index(strval($this->base_url . $this->frontpage_url), ".Post")
+        $this->index($url, ".Post")
             ->each(function (Crawler $node) {
 
-                print_r($node->text());
-
                 $title = $node->filter("._eYtD2XCVieq6emjKBH3m")->text();
-                $link = $node->filter("._2INHSNB8V5eaWp4P0rY_mE")->attr("href");
 
                 // TODO: see if there is another selector being used after Arkansas or if most locations are actually missing
-                if(strpos($node->text(), 'img[alt="Post image"]') ){
-                    $imagesrc = $node->filter('img[alt="Post image"]')->attr("src");
+                if(strpos($node->text(), "img[href*=Post]")){
+                    $image_src = $node->filter("img[href*=Post]")->attr("src");
                 }
                 else
                 {
-                    $imagesrc = "http://placehold.it/350x150";
+                    $image_src = "http://placehold.it/350x150";
                 }
 
-                $subreddit = $node->filter('a[data-click-id="subreddit"]')->text();
-                $subredditlink = $node->filter('a[data-click-id="subreddit"]')->attr("href");
+                $subreddit_text = $node->filter('a[data-click-id="subreddit"]')->attr("href");
+                $subreddit = preg_replace(["|r|", "|/|"], "", $subreddit_text);
+
+                $subreddit_link = $this->base_url . $node->filter('a[data-click-id="subreddit"]')->attr("href");
+
                 $user = $node->filter('.oQctV4n0yUb0uiHDdGnmE')->text();
-                $userlink = $node->filter('.oQctV4n0yUb0uiHDdGnmE')->attr("href");
+
+                $user_link = $this->base_url . $node->filter('.oQctV4n0yUb0uiHDdGnmE')->attr("href");
+
                 $upvotes = $node->filter("._1rZYMD_4xY3gRcSS3p8ODO")->text();
-                $commentcount = $node->filter(".FHCV02u6Cp2zYL0fhQPsO")->text();
-                $commentlink = $node->filter('a[data-click-id="comments"]')->attr("href");
+                $comment_count = $node->filter(".FHCV02u6Cp2zYL0fhQPsO")->text();
+
+                $comment_link = $this->base_url . $node->filter('a[data-click-id="comments"]')->attr("href");
+
+                if(strpos($node->text(), "._2INHSNB8V5eaWp4P0rY_mE"))
+                {
+                    $link = $node->filter("._2INHSNB8V5eaWp4P0rY_mE")->attr("href");
+                }
+                else
+                {
+                    $link = $comment_link;
+                }
 
                 $post = Post::updateOrCreate([
                     "title" => $title,
                     "link" => $link,
-                    "image-src" => $imagesrc,
+                    "image_src" => $image_src,
                     "subreddit" => $subreddit,
-                    "subreddit-link" => $subredditlink,
+                    "subreddit_link" => $subreddit_link,
                     "user" => $user,
-                    "user-link" => $userlink,
+                    "user_link" => $user_link,
                     "upvotes" => $upvotes,
-                    "comment-count" => $commentcount,
-                    "comment-link" => $commentlink
+                    "comment_count" => $comment_count,
+                    "comment_link" => $comment_link
                 ]);
 
                 print_r($post);
+                echo PHP_EOL;
 
             });
 
-            print_r($posts);
+            print("Done.");
 
     }
 

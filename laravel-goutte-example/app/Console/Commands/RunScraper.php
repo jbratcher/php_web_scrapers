@@ -15,7 +15,7 @@ class RunScraper extends Command
         $name = $this->argument('name');
 
         switch ($name) {
-            case 'reddit-font-page':
+            case 'reddit-front-page':
                 $scraper = new Reddit();
                 break;
 

@@ -17,14 +17,14 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->text("title")->nullable();
             $table->text("link")->nullable();
-            $table->text("image-src")->nullable();
+            $table->text("image_src")->nullable();
             $table->string("subreddit")->nullable();
-            $table->text("subreddit-link")->nullable();
+            $table->text("subreddit_link")->nullable();
             $table->string("user")->nullable();
-            $table->text("user-link")->nullable();
+            $table->text("user_link")->nullable();
             $table->string("upvotes")->nullable();
-            $table->string("comment-count")->nullable();
-            $table->text("comment-link")->nullable();
+            $table->string("comment_count")->nullable();
+            $table->text("comment_link")->nullable();
             $table->timestamps();
         });
     }

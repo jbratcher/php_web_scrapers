@@ -1,0 +1,1 @@
+# Reddit scraper using PHP Simple HTML DOM Parser

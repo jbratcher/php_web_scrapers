@@ -1846,6 +1846,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getPosts();
@@ -1861,10 +1892,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("/posts").then(function (response) {
-        _this.posts = response;
-        console.log(response);
+        _this.posts = response.data;
       });
-      console.log(this.posts);
+      console.log("Posts object: " + this.posts);
     },
     deletePost: function deletePost(id) {
       var _this2 = this;
@@ -37172,18 +37202,53 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("h1", { staticClass: "text-center" }, [_vm._v("Hello, Reddit")]),
+      _vm._v(" "),
+      _vm._l(_vm.posts, function(post) {
+        return _c("section", { key: post.id, staticClass: "card-container" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("img", {
+              staticClass: "card-img-top",
+              attrs: { src: post.image_src, alt: "..." }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("a", { attrs: { href: post.link } }, [
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(post.title))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: post.subreddit_link } }, [
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(_vm._s(post.subreddit))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: post.user_link } }, [
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(_vm._s(post.user))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: post.comment_link } }, [
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(_vm._s(post.comment_count))
+                ])
+              ])
+            ])
+          ])
+        ])
+      })
+    ],
+    2
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Hello, Reddit")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

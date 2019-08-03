@@ -9,14 +9,14 @@ class Post extends Model
     protected $fillable = [
         "title",
         "link",
-        "image-src",
+        "image_src",
         "subreddit",
-        "subreddit-link",
+        "subreddit_link",
         "user",
-        "user-link",
+        "user_link",
         "upvotes",
-        "comment-count",
-        "comment-link"
+        "comment_count",
+        "comment_link"
     ];
 
 }
