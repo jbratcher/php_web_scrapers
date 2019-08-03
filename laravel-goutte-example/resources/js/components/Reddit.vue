@@ -8,7 +8,7 @@
 
             <div class="card">
 
-                <img :src="post.image_src" class="card-img-top" alt="...">
+                <img v-if="post.image_src" :src="post.image_src" class="card-img-top" alt="...">
 
                 <div class="card-body">
 
@@ -23,6 +23,8 @@
                     <a :href="post.user_link">
                         <p class="card-text">{{ post.user }}</p>
                     </a>
+
+                    <p v-if="post.upvotes" class="card-text">{{ post.upvotes }}</p>
 
                     <a :href="post.comment_link">
                         <p class="card-text">{{ post.comment_count }}</p>

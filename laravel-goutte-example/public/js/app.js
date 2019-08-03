@@ -1877,6 +1877,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getPosts();
@@ -37211,10 +37213,12 @@ var render = function() {
       _vm._l(_vm.posts, function(post) {
         return _c("section", { key: post.id, staticClass: "card-container" }, [
           _c("div", { staticClass: "card" }, [
-            _c("img", {
-              staticClass: "card-img-top",
-              attrs: { src: post.image_src, alt: "..." }
-            }),
+            post.image_src
+              ? _c("img", {
+                  staticClass: "card-img-top",
+                  attrs: { src: post.image_src, alt: "..." }
+                })
+              : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("a", { attrs: { href: post.link } }, [
@@ -37234,6 +37238,12 @@ var render = function() {
                   _vm._v(_vm._s(post.user))
                 ])
               ]),
+              _vm._v(" "),
+              post.upvotes
+                ? _c("p", { staticClass: "card-text" }, [
+                    _vm._v(_vm._s(post.upvotes))
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("a", { attrs: { href: post.comment_link } }, [
                 _c("p", { staticClass: "card-text" }, [

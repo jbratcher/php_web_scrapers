@@ -66,13 +66,13 @@ class Reddit extends Scraper
 
                 $title = $node->filter("._eYtD2XCVieq6emjKBH3m")->text();
 
-                // TODO: see if there is another selector being used after Arkansas or if most locations are actually missing
-                if(strpos($node->text(), "img[href*=Post]")){
-                    $image_src = $node->filter("img[href*=Post]")->attr("src");
+                // Bug: always returns null TODO: get image, videos, gifs here
+                if(strpos($node->text(), ".ImageBox-image.media-element")){
+                    $image_src = $node->filter(".ImageBox-image.media-element")->attr("src") || NULL;
                 }
                 else
                 {
-                    $image_src = "http://placehold.it/350x150";
+                    $image_src = NULL;
                 }
 
                 $subreddit_text = $node->filter('a[data-click-id="subreddit"]')->attr("href");

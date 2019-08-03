@@ -10652,6 +10652,11 @@ a.text-dark:focus {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+  color: #333;
+}
+
 .card-container {
   display: flex;
   flex-direction: column;
