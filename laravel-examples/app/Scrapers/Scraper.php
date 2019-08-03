@@ -4,6 +4,9 @@ namespace App\Scrapers;
 
 use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
+use Facebook\WebDriver\Chrome\ChromeOptions;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\Remote\DesiredCapabilities;
 
 abstract class Scraper
 {
@@ -22,9 +25,19 @@ abstract class Scraper
      */
     protected $crawler;
 
+    /**
+     * @var boolean
+     */
+    protected $use_dusk_browser;
+
     public function __construct()
     {
         $this->client = new Client();
+
+        if($this->use_dusk_browser)
+        {
+            static::startChromeDriver();
+        }
     }
 
     abstract public function run();
