@@ -8,6 +8,8 @@ use Laravel\Dusk\Browser;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Illuminate\Support\Facades\DB;
+use App\Post;
 
 class Reddit extends Scraper
 {
