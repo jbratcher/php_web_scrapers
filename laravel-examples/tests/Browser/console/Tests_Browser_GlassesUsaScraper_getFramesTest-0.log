@@ -1,0 +1,20 @@
+[
+    {
+        "level": "SEVERE",
+        "message": "https:\/\/www.glassesusa.com\/eyeglasses-collection 33:13996 Uncaught SyntaxError: Unexpected token )",
+        "source": "javascript",
+        "timestamp": 1564938924280
+    },
+    {
+        "level": "SEVERE",
+        "message": "https:\/\/sentry.io\/api\/222185\/store\/?sentry_key=0eaec41e81034c86a817a3bc24cd801f&sentry_version=7 - Failed to load resource: the server responded with a status of 429 (TOO MANY REQUESTS)",
+        "source": "network",
+        "timestamp": 1564938924866
+    },
+    {
+        "level": "SEVERE",
+        "message": "https:\/\/sp.analytics.yahoo.com\/sp.pl?a=10000&jsonp=YAHOO.ywa.I13N.handleJSONResponse&d=Sun%2C%2004%20Aug%202019%2017%3A15%3A26%20GMT&n=4d&b=Largest%20collection%20of%20eyeglasses%20available%20online%20at%20affordable%20prices&.yp=10070646&f=https%3A%2F%2Fwww.glassesusa.com%2Feyeglasses-collection&enc=UTF-8 0:8 Uncaught SyntaxError: Unexpected identifier",
+        "source": "javascript",
+        "timestamp": 1564938927005
+    }
+]

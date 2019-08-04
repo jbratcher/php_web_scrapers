@@ -2,8 +2,12 @@
 
 namespace App\Scrapers;
 
-use Illuminate\Support\Facades\DB;
-use App\Post;
+use Goutte\Client;
+use Symfony\Component\DomCrawler\Crawler;
+use Laravel\Dusk\Browser;
+use Facebook\WebDriver\Chrome\ChromeOptions;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\Remote\DesiredCapabilities;
 
 class Reddit extends Scraper
 {
