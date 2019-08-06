@@ -64,8 +64,6 @@ class Reddit extends Scraper
 
         $url = strval($this->base_url . $this->frontpage_url);
 
-        $posts = [];
-
         $this->index($url, ".Post")
             ->each(function (Crawler $node) {
 
