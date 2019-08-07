@@ -93,27 +93,29 @@ class GlassesUsaScraper extends DuskTestCase
 
             foreach ($browser->elements('[data-test-name="product"]') as $element) {
 
-                $img = $element->findElement(WebDriverBy::cssSelector('[data-test-name="itemImage"]'))->getAttribute("src");
                 $name = $element->findElement(WebDriverBy::cssSelector('[data-test-name="productTitle"]'))->getText();
                 $price = $element->findElement(WebDriverBy::cssSelector('[data-test-name="regularPrice"]'))->getText();
-
-                print_r("Name: " . $name . PHP_EOL);
-                print_r("Price: " . $price . PHP_EOL);
-                print_r("Image: " . $img . PHP_EOL);
+                $img = $element->findElement(WebDriverBy::cssSelector('[data-test-name="itemImage"]'))->getAttribute("src");
+                $colors = $element->findElement(WebDriverBy::cssSelector('[data-test-name="colorCircle"]'))->getAttribute("data-test-value");
 
                 /*->
                  *  @var WebDriverElement $element
                 */
                 $frame = Frame::updateOrCreate([
                     'name' => $name,
+                    'price' => $price,
                     'image' => $img,
-                    'price' => $price
+                    'colors' => $colors
                 ]);
 
                 $this->frames[] = $frame;
 
                 print("Frame: ");
                 print_r($frame) . PHP_EOL;
+
+                if($this->counter > 2) {
+                    die;
+                }
 
             }
 
