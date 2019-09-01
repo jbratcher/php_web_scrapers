@@ -15,6 +15,7 @@ class Frame extends Model
         "product_id",
         "name",
         "price",
+        "image",
         "type",
         "colors",
         "size",
@@ -23,7 +24,7 @@ class Frame extends Model
         "spring_hinges",
         "eligible_progressive_bifocal",
         "gender",
-        "image"
+
     ];
 
 }

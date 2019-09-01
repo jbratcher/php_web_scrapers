@@ -22,6 +22,7 @@ class CreateFramesTable extends Migration
             $table->string("type")->nullable();
             $table->json("colors")->nullable();
             $table->string("size")->nullable();
+            $table->string("material")->nullable();
             $table->string("shape")->nullable();
             $table->string("spring_hinges")->nullable();
             $table->string("eligible_progressive_bifocal")->nullable();

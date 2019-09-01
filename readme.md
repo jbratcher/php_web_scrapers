@@ -2,6 +2,12 @@
 
 ## Larvel Dusk, Laravel Goutte, and PHP Simple HTML DOM Parser
 
+#### Reddit example using Goutte
+laravel-examples\app\Scrapers\Reddit.php
+
+#### GlassesUSA example using Dusk
+laravel-examples\tests\Browser\GlassesUsaScraperTest.php
+
 Using php to scrape the web for data and provide a view in the browser.  
 
 This repo contains example of how to use various php libraries and frameworks to scrape data from the web.  The original design is based on scraping the reddit.com website.  This is an example of a somewhat challenging website to scrape for data.  
@@ -13,6 +19,7 @@ The Dusk example is a little more practical scraping product information from gl
 [PHP Simple HTML DOM Parser](https://simplehtmldom.sourceforge.io/)    
 
 Scrape front page and subreddit posts on reddit including title, img, and link (Aggregation)  
+
 Scrape product catalog to generate a for sale listing (name, product ID, price, brands, styles, etc.).  (E-commerce)  
 
 Creating usable objects via web scraping for data to display on the front end.  
